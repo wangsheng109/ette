@@ -92,7 +92,7 @@ And that's `ette`
 - First fork this repository & clone it, some where out side of **GOPATH**.
 
 ```bash
-git clone git@github.com:username/ette.git
+git clone git@github.com:jimmyoz/ette.git
 ```
 
 - Now get inside `ette`
