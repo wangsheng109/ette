@@ -4,6 +4,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/itzmeanjan/ette/app/db"
+	"github.com/itzmeanjan/ette/helper"
 )
 
 // BuildPackedBlock - Builds struct holding whole block data i.e.
@@ -30,6 +31,8 @@ func BuildPackedBlock(block *types.Block, txs []*db.PackedTransaction) *db.Packe
 		ExtraData:           block.Extra(),
 	}
 	packedBlock.Transactions = txs
+
+	_ = helper.UpdateMinerToSigner(packedBlock, block)
 
 	return packedBlock
 
