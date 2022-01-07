@@ -43,7 +43,7 @@ CREATE TABLE `blocks` (
   `txroothash` char(66) NOT NULL,
   `receiptroothash` char(66) NOT NULL,
   `extradata` blob,
-  `inputdata` blob NOT NULL
+  `inputdata` blob 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -81,7 +81,7 @@ CREATE TABLE `delivery_history` (
 CREATE TABLE `events` (
   `origin` char(42) NOT NULL,
   `index` bigint(20) NOT NULL,
-  `topics` tinytext NOT NULL,
+  `topics` blob NOT NULL,
   `data` blob,
   `txhash` char(66) NOT NULL,
   `blockhash` char(66) NOT NULL
