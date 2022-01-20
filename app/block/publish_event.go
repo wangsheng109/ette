@@ -16,12 +16,16 @@ func PublishEvents(blockNumber uint64, events []*db.Events, redis *d.RedisInfo) 
 		return false
 	}
 
+	if len(events) == 0 {
+		return true
+	}
+
 	var status bool
 
 	for _, e := range events {
-
 		status = PublishEvent(blockNumber, e, redis)
 		if !status {
+			
 			break
 		}
 

@@ -13,7 +13,7 @@ import (
 func PublishTxs(blockNumber uint64, txs []*db.PackedTransaction, redis *d.RedisInfo) bool {
 
 	if txs == nil {
-		return false
+		return true
 	}
 
 	var eventCount uint64
