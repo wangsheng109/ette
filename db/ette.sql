@@ -35,6 +35,7 @@ CREATE TABLE `blocks`  (
   `nonce` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `miner` char(42) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `size` float NOT NULL,
+<<<<<<< HEAD
   `stateroothash` char(66) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `unclehash` char(66) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `txroothash` char(66) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -67,6 +68,37 @@ DROP TABLE IF EXISTS `delivery_history`;
 CREATE TABLE `delivery_history`  (
   `id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `client` char(42) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+=======
+  `stateroothash` char(66) NOT NULL,
+  `unclehash` char(66) NOT NULL,
+  `txroothash` char(66) NOT NULL,
+  `receiptroothash` char(66) NOT NULL,
+  `extradata` blob,
+  `inputdata` blob 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `config_vars`
+--
+
+CREATE TABLE `config_vars` (
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `value` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `delivery_history`
+--
+
+CREATE TABLE `delivery_history` (
+  `id` char(36) DEFAULT NULL,
+  `client` char(42) NOT NULL,
+>>>>>>> 22d90d4821492fd2b416160ce91989b0137de9b9
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `endpoint` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `datalength` bigint(20) NOT NULL
@@ -79,6 +111,7 @@ DROP TABLE IF EXISTS `events`;
 CREATE TABLE `events`  (
   `origin` char(42) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `index` bigint(20) NOT NULL,
+<<<<<<< HEAD
   `topics`  blob NULL,
   `data` blob NULL,
   `txhash` char(66) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -192,6 +225,50 @@ CREATE TABLE `transactions`  (
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `data` blob NULL,
   `input_data` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+=======
+  `topics` blob NOT NULL,
+  `data` blob,
+  `txhash` char(66) NOT NULL,
+  `blockhash` char(66) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `subscription_details`
+--
+
+CREATE TABLE `subscription_details` (
+  `address` char(42) NOT NULL,
+  `subscriptionplan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `subscription_plans`
+--
+
+CREATE TABLE `subscription_plans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `deliverycount` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `hash` char(66) NOT NULL,
+  `from` char(42) NOT NULL,
+  `to` char(42) DEFAULT NULL,
+  `contract` char(42) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `data` blob,
+>>>>>>> 22d90d4821492fd2b416160ce91989b0137de9b9
   `gas` bigint(20) NOT NULL,
   `gasprice` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cost` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
