@@ -13,7 +13,7 @@ import (
 func PublishTxs(blockNumber uint64, txs []*db.PackedTransaction, redis *d.RedisInfo) bool {
 
 	if txs == nil {
-		return false
+		return true
 	}
 
 	var eventCount uint64
@@ -55,32 +55,36 @@ func PublishTx(blockNumber uint64, tx *db.PackedTransaction, redis *d.RedisInfo)
 	if tx.Tx.To == "" {
 		// This is a contract creation tx
 		pTx = &d.Transaction{
-			Hash:      tx.Tx.Hash,
-			From:      tx.Tx.From,
-			Contract:  tx.Tx.Contract,
-			Value:     tx.Tx.Value,
-			Data:      tx.Tx.Data,
-			Gas:       tx.Tx.Gas,
-			GasPrice:  tx.Tx.GasPrice,
-			Cost:      tx.Tx.Cost,
-			Nonce:     tx.Tx.Nonce,
-			State:     tx.Tx.State,
-			BlockHash: tx.Tx.BlockHash,
+			Hash:        tx.Tx.Hash,
+			From:        tx.Tx.From,
+			Contract:    tx.Tx.Contract,
+			Value:       tx.Tx.Value,
+			Data:        tx.Tx.Data,
+			Gas:         tx.Tx.Gas,
+			GasPrice:    tx.Tx.GasPrice,
+			Cost:        tx.Tx.Cost,
+			Nonce:       tx.Tx.Nonce,
+			State:       tx.Tx.State,
+			BlockHash:   tx.Tx.BlockHash,
+			BlockNumber: tx.Tx.BlockNumber,
+			Timestamp:   tx.Tx.Timestamp,
 		}
 	} else {
 		// This is a normal tx, so we keep contract field empty
 		pTx = &d.Transaction{
-			Hash:      tx.Tx.Hash,
-			From:      tx.Tx.From,
-			To:        tx.Tx.To,
-			Value:     tx.Tx.Value,
-			Data:      tx.Tx.Data,
-			Gas:       tx.Tx.Gas,
-			GasPrice:  tx.Tx.GasPrice,
-			Cost:      tx.Tx.Cost,
-			Nonce:     tx.Tx.Nonce,
-			State:     tx.Tx.State,
-			BlockHash: tx.Tx.BlockHash,
+			Hash:        tx.Tx.Hash,
+			From:        tx.Tx.From,
+			To:          tx.Tx.To,
+			Value:       tx.Tx.Value,
+			Data:        tx.Tx.Data,
+			Gas:         tx.Tx.Gas,
+			GasPrice:    tx.Tx.GasPrice,
+			Cost:        tx.Tx.Cost,
+			Nonce:       tx.Tx.Nonce,
+			State:       tx.Tx.State,
+			BlockHash:   tx.Tx.BlockHash,
+			BlockNumber: tx.Tx.BlockNumber,
+			Timestamp:   tx.Tx.Timestamp,
 		}
 	}
 
