@@ -82,5 +82,5 @@ func FetchTransactionByHash(client *ethclient.Client, block *types.Block, tx *ty
 	// Passing all tx related data to listener go routine
 	// so that it can attempt to store whole block data
 	// into database
-	returnValChan <- BuildPackedTx(tx, sender, receipt)
+	returnValChan <- BuildPackedTx(tx, sender, receipt, block.Time())
 }
