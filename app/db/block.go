@@ -146,6 +146,7 @@ func UpdateBlock(dbWTx *gorm.DB, block *Blocks) error {
 		"txroothash":      block.TransactionRootHash,
 		"receiptroothash": block.ReceiptRootHash,
 		"extradata":       block.ExtraData,
+		"txs_num":         block.TxsNumber,
 	}).Error
 
 }

@@ -31,6 +31,7 @@ func PublishBlock(block *db.PackedBlock, redis *d.RedisInfo) bool {
 		TransactionRootHash: block.Block.TransactionRootHash,
 		ReceiptRootHash:     block.Block.ReceiptRootHash,
 		ExtraData:           block.Block.ExtraData,
+		TxNum:               block.Block.TxsNumber,
 	}
 
 	if err := redis.Client.Publish(context.Background(), redis.BlockPublishTopic, _block).Err(); err != nil {

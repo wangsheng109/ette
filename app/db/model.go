@@ -31,6 +31,7 @@ type Blocks struct {
 	TransactionRootHash string  `gorm:"column:txroothash;type:char(66);not null"`
 	ReceiptRootHash     string  `gorm:"column:receiptroothash;type:char(66);not null"`
 	ExtraData           []byte  `gorm:"column:extradata;type:bytea"`
+	TxsNumber           uint64  `gorm:"column:tx_num;type:int(10);not null;default 1"`
 	// Transactions        Transactions `gorm:"foreignKey:blockhash"`
 	// Events              Events       `gorm:"foreignKey:blockhash"`
 }

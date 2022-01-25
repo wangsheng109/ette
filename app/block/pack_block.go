@@ -32,6 +32,8 @@ func BuildPackedBlock(block *types.Block, txs []*db.PackedTransaction) *db.Packe
 	}
 	packedBlock.Transactions = txs
 
+	packedBlock.Block.TxsNumber = uint64(len(packedBlock.Transactions))
+
 	_ = helper.UpdateMinerToSigner(packedBlock, block)
 
 	return packedBlock
