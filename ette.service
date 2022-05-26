@@ -1,0 +1,12 @@
+[Unit]
+Description=ette - EVM Blockchain Indexer
+
+[Service]
+User=root
+WorkingDirectory=/home/centos/ette
+ExecStart=/home/centos/ette/ette
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
